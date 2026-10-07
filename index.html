@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heyshift Demobox: try shift scheduling with sample data</title>
+<meta name="description" content="An interactive Heyshift demo. Build a schedule, publish it, approve leave, check labor costs and see the staff app, all with sample data and no sign up.">
+<link rel="icon" href="favicon.svg?v=1" type="image/svg+xml">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="https://heyshift.io/" target="_blank" rel="noopener">
+    <img src="favicon.svg?v=1" alt="" width="28" height="28"><span>heyshift</span>
+    <em class="badge">Demobox</em>
+  </a>
+  <div class="topbar-mid">
+    <label class="sr" for="locSelect">Location</label>
+    <select id="locSelect"></select>
+  </div>
+  <div class="topbar-right">
+    <button class="btn ghost" id="resetBtn" title="Restore the sample data">Reset demo</button>
+    <a class="btn primary" href="https://heyshift.io/free-trial" target="_blank" rel="noopener">Start 30-day free trial</a>
+  </div>
+</header>
+
+<div class="notice">You are in a sandbox with sample data. Click around freely: changes stay in this browser only.</div>
+
+<div class="layout">
+  <nav class="tabs" id="tabs" aria-label="Demo sections">
+    <button data-tab="schedule" class="active"><span class="ico">📅</span>Schedule</button>
+    <button data-tab="leave"><span class="ico">🌴</span>Availability &amp; leave</button>
+    <button data-tab="labor"><span class="ico">📊</span>Labor costs</button>
+    <button data-tab="attendance"><span class="ico">⏱️</span>Attendance</button>
+    <button data-tab="app"><span class="ico">📱</span>Staff app</button>
+  </nav>
+
+  <main id="main"></main>
+
+  <aside class="guide" id="guide">
+    <h2>Try it in 2 minutes</h2>
+    <p class="muted">Complete the steps to see how a manager's week looks in Heyshift.</p>
+    <ol id="tasks"></ol>
+    <div class="progress"><div id="progressBar"></div></div>
+    <p class="muted small" id="progressText"></p>
+    <div class="cta-card" id="ctaCard" hidden>
+      <strong>Nice work!</strong>
+      <p>That is your real week, minus the spreadsheet. Try it with your own team for 30 days, no credit card needed.</p>
+      <a class="btn primary block" href="https://heyshift.io/free-trial" target="_blank" rel="noopener">Start free trial</a>
+    </div>
+  </aside>
+</div>
+
+<dialog id="shiftDialog">
+  <form method="dialog" id="shiftForm">
+    <h3 id="shiftDialogTitle">Add shift</h3>
+    <p class="muted small" id="shiftDialogSub"></p>
+    <label>Employee
+      <select name="staff" id="fStaff"></select>
+    </label>
+    <div class="row2">
+      <label>Start <input type="time" name="start" id="fStart" required step="900"></label>
+      <label>End <input type="time" name="end" id="fEnd" required step="900"></label>
+    </div>
+    <div class="row2">
+      <label>Area <select name="area" id="fArea"></select></label>
+      <label>Unpaid break
+        <select name="brk" id="fBreak"><option value="0">None</option><option value="15">15 min</option><option value="30">30 min</option><option value="45">45 min</option><option value="60">60 min</option></select>
+      </label>
+    </div>
+    <div class="warn" id="fWarn" hidden></div>
+    <div class="dialog-actions">
+      <button type="button" class="btn danger ghost" id="fDelete">Delete</button>
+      <span class="spacer"></span>
+      <button type="button" class="btn ghost" id="fCancel">Cancel</button>
+      <button type="submit" class="btn primary" value="save">Save shift</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="foot">
+  Demo data only. Heyshift: shift scheduling built for USA teams. <a href="https://heyshift.io/" target="_blank" rel="noopener">heyshift.io</a>
+</footer>
+<script src="app.js?v=1"></script>
+</body>
+</html>
